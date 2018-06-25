@@ -11,9 +11,17 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileSizePipe } from './file-size.pipe';
 import { ScrollableDirective } from './scrollable.directive';
 import { AppRoutingModule } from './/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, DropZoneDirective, FileUploadComponent, FileSizePipe, ScrollableDirective],
+  declarations: [
+    AppComponent,
+    DropZoneDirective,
+    FileUploadComponent,
+    FileSizePipe,
+    ScrollableDirective,
+    DashboardComponent
+  ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(env.firebase),
