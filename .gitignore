@@ -5,6 +5,10 @@
 /tmp
 /out-tsc
 
+
+# Envrionment Variables
+**/environment.*
+
 # dependencies
 /node_modules
 
