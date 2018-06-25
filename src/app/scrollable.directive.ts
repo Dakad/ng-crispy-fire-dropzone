@@ -7,29 +7,27 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[appScrollable]'
+  selector: '[scrollable]'
 })
 export class ScrollableDirective {
-  @Output() scrollPosition = new EventEmitter<string>();
+  @Output() scrollPosition = new EventEmitter();
 
-  constructor(private el: ElementRef) {}
+  constructor(public el: ElementRef) {}
 
   @HostListener('scroll', ['$event'])
-  onScroll(event): void {
+  onScroll(event) {
     try {
-      const top = event.target.scroolTop; //
-
-      const height = this.el.nativeElement.scroolHeight;
+      const top = event.target.scrollTop;
+      const height = this.el.nativeElement.scrollHeight;
       const offset = this.el.nativeElement.offsetHeight;
 
-      // ? Has reached the bottom ??
       if (top > height - offset - 1) {
-        this.scrollPosition.emit('down');
+        this.scrollPosition.emit('bottom');
       }
 
       if (top === 0) {
-        this.scrollPosition.emit('up');
+        this.scrollPosition.emit('top');
       }
-    } catch (e) {}
+    } catch (err) {}
   }
 }
