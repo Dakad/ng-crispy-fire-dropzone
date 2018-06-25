@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { environment as env } from '../environments/environment';
 import { DropZoneDirective } from './drop-zone.directive';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FileSizePipe } from './file-size.pipe';
 
 @NgModule({
-  declarations: [AppComponent, DropZoneDirective, FileUploadComponent],
+  declarations: [AppComponent, DropZoneDirective, FileUploadComponent, FileSizePipe],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(env.firebase),
