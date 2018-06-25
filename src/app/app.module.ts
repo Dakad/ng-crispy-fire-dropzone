@@ -6,9 +6,11 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import { AppComponent } from './app.component';
 import { environment as env } from '../environments/environment';
+import { DropZoneDirective } from './drop-zone.directive';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DropZoneDirective, FileUploadComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(env.firebase),
