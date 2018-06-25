@@ -14,6 +14,14 @@
   color: #dadada !important;
 }
 
+.dropzone.file-label {
+  font-size: 1.2em;
+}
+
 progress::-webkit-progress-value {
   transition: width 0.1s ease;
+}
+
+img {
+  width: 250px;
 }
