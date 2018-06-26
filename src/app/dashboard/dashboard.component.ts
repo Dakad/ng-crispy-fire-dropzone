@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PaginationService } from '../pagination.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,13 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  constructor(private page: PaginationService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const config = {
+      reverse: true,
+      prepend: false
+    };
+    this.page.init('pics', 'year', config);
+  }
 
   scrollHandler(event): void {
-    console.log('Yep');
-
-    console.log(event);
+    if (event === 'down') {
+      this.page.more();
+    }
   }
 }

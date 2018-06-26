@@ -1,3 +1,12 @@
-<div class="container" scrollable (scrollPosition)="scrollHandler($event)">
-  <div style="height:2000px"></div>
+<div class="content" scrollable (scrollPosition)="scrollHandler($event)">
+  <div *ngFor="let pic of page.data | async">
+    <h1>{{pic.name}}</h1>
+    <img alt="Pic" [src]="pic.url">
+  </div>
+
+  <hr>
+
+  <p *ngIf="page.done | async"> No more pictures </p>
+  <app-loading-spinner *ngIf="page.loading && !page.done"></app-loading-spinner>
+
 </div>

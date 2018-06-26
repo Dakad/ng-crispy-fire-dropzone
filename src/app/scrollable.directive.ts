@@ -22,12 +22,14 @@ export class ScrollableDirective {
       const offset = this.el.nativeElement.offsetHeight;
 
       if (top > height - offset - 1) {
-        this.scrollPosition.emit('bottom');
+        this.scrollPosition.emit('down');
       }
 
       if (top === 0) {
-        this.scrollPosition.emit('top');
+        this.scrollPosition.emit('up');
       }
-    } catch (err) {}
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
