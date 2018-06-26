@@ -37,17 +37,16 @@ export class FileUploadComponent implements OnInit {
   ngOnInit() {}
 
   startUpload(event: FileList): void {
-    const file = event.item(0);
+    const file: File = event.item(0);
 
     if (file.type.split('/')[0] !== 'image') {
       console.error(`Unsupported file type (${file.type}) :-( :`);
       return;
     }
 
-    const filePath:string = `pics/${new Date().getTime()}_${file.name}`;
+    const filePath: string = `pics/${new Date().getTime()}_${file.name}`;
 
     const customMetadata = { app: 'MY AngularFire-powered PWA' };
-
 
     // The main task
     const fileRef = this.storage.ref(filePath);
@@ -56,15 +55,21 @@ export class FileUploadComponent implements OnInit {
     // Progress monitoring
     this.percentage = this.task.percentageChanges();
     this.snapshot = this.task.snapshotChanges().pipe(
-      tap(snap => {
-        if (snap.bytesTransferred === snap.totalBytes) {
-          // Update firestore on completion
-          this.db.collection('pics').add({ path : filePath, size: snap.totalBytes });
-        }
-      }),
       // get notified when the download URL is available
-      finalize(() => this.downloadUrl = fileRef.getDownloadURL() )
- )
+      finalize(() => {
+        this.downloadUrl = fileRef.getDownloadURL();
+        this.downloadUrl.subscribe(url => {
+          this.db.collection('pics').add({
+            name: file.name,
+            type: file.type.split('/')[1],
+            year: file.lastModified,
+            path: filePath,
+            size: file.size,
+            url,
+            ...customMetadata
+          });
+        });
+      })
     );
 
     // The file's download URL
