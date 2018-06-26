@@ -12,6 +12,7 @@ import { FileSizePipe } from './file-size.pipe';
 import { ScrollableDirective } from './scrollable.directive';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FileUploadComponent,
     FileSizePipe,
     ScrollableDirective,
-    DashboardComponent
+    DashboardComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
